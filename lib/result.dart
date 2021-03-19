@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class Result extends StatelessWidget {
   final int score;
+  final Function callback;
 
-  Result(this.score);
+  Result(this.score, this.callback);
 
   String get resultPhrase {
     String copy;
@@ -21,9 +22,17 @@ class Result extends StatelessWidget {
   Widget build(BuildContext context) {
     print(score);
     return Center(
-      child: Text(
-        resultPhrase,
-        style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+      child: Column(
+        children: [
+          Text(
+            resultPhrase,
+            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+          ),
+          TextButton(
+            onPressed: callback,
+            child: Text('Try Again'),
+          )
+        ],
       ),
     );
   }
